@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load  colaborador_tags %}
+{% block contenido %}
+
+
+<div class="cont-cr">
+    <center>
+
+        {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+        <div class="contenedor-crear">
+            <div class="col-md-4 crear-post">
+                <form method= "POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="titulo">
+                        <a class="btn btn-info" href="{%url 'apps.post:crear_categoria'%}" role="button">Crear Nueva Categoria</a>
+                    </div>         
+                    <div class="tex-center mx-sm-4 pt-3">
+                        <h1 class="text-light">Crea un Nuevo Post</h1>
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <span>Usuario: {{user.username}}</span>
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="{{form.titulo.id_for_label}}">Titulo</label>
+                        <input type="text" name="{{form.titulo.html_name}}"  maxlength="50" required="" id="{{form.titulo.id_for_label}}" class="datos_form">
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="{{form.subtitulo.id_for_label}}" >Subtitulo</label>
+                        <input type="text" name="subtitulo" maxlength="100" id="{{form.subtitulo.id_for_label}}" class="datos_form">
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="{{form.texto.id_for_label}}" >Texto</label>
+                        <textarea class="tex_crear" name="texto" cols="40" rows="10" required="" id="{{form.texto.id_for_label}}"></textarea>
+     
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="{{form.activo.id_for_label}}">Activo:</label>
+                        <input type="checkbox" name="activo" id="{{form.activo.id_for_label}}" checked=""class="datos_activo">
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="{{form.categoria.id_for_label}}">Categoria:</label>
+                        <select class="form-select" aria-label="Default select example" id= "{{form.categoria.id_for_label}}" name="{{form.categoria.html_name}}">
+                            {% for categoria in form.categoria.field.queryset %}
+                            <option value="{{ categoria.id }}" {% if categoria.id == form.categoria.value %}selected{% endif %}>{{categoria.nombre}}</option>
+                            {% endfor %}
+                        </select>
+                        {% comment %} {% for categoria in form.categoria.field.queryset %}
+                        <p>{{categoria.nombre}}</p>
+                        {% endfor %} {% endcomment %}
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="id_imagen">Imagen:</label>
+                        <input class="form-control" type="file" name="imagen" accept="image/*" id="id_imagen">
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <input type="submit" value="Guardar" class="btn btn-block guardar">
+                    </div>
+                    {% comment %} <p>{{form.categoria}}</p> {% endcomment %}
+                {{form.errors}}
+                </form>
+
+            </div>
+            
+    
+        </div>
+        {% else %}
+        <div class="container-fluid">
+            <h1>Solo Usuarios con permisos pueden acceder a esta pagina</h1>
+        </div>
+        {% endif %}
+    </center>
+</div>
+
+{% comment %} usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
+titulo = models.CharField(max_length=50, null=False)
+subtitulo = models.CharField(max_length=100, null=True, blank=True)
+fecha = models.DateTimeField(auto_now_add=True)
+texto = models.TextField(null=False)
+activo = models.BooleanField(default=True)
+categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, default="sin categoria")
+imagen = models.ImageField(upload_to="media", default="static/post_default.png")
+publicado = models.DateTimeField(default=timezone.now) {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ {% comment %} <center>
+    {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+    <div class= "container-fluid" "style= margin:200px;">
+        <div class= "container-fluid" "style= margin-top:300px;">
+            <a id="botton_post" href= "{%url 'apps.post:crear_categoria'%}">Crear Nueva categoria</a>
+        </div>
+
+    <h1>Crear Post</h1>
+    <form method= "POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p}}
+     <input type= "submit" value= "Guardar">
+    </form> 
+
+    {% else %}
+        <div class="container-fluid">
+            <h1>Solo Usuarios con permisos pueden acceder a esta pagina</h1>
+        </div>
+    {% endif %}
+</center>   {% endcomment %}
+{% endblock contenido %}

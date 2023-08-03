@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<center>
+    <div class="cat">
+        <div class="fomr_cat">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="titulo-cat">
+                    <h1 class="text-light">Eliminar articulo</h1>
+                    <p class="text-light">¿Estas seguro de que quieres eliminar este Post "{{ post.titulo }}"</p>
+                </div>
+                <div class="nombre mx-sm-4 pt-3">
+                    <input class="btn btn-danger" type="submit" value="Si, Eliminar">
+                    <a class="btn btn-success" style="color: black;" href="{% url 'apps.post:post_individual' post.id %}">No, Cancelar</a> 
+                </div>
+
+             </form>
+        </div>
+    </div>
+</center>
+
+
+
+
+
+
+{% comment %} <center>
+<div class="contai" style="margin: 30px;">
+    <h1>eliminar Post</h1>
+    <p>¿Estas seguro de que quieres eliminar este Post "{{ post.titulo }}"</p>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Si, Eliminar">
+        <a style="color: black;" href="#">No, Cancelar</a> 
+    </form>
+</div>
+</center> {% endcomment %}
+
+{% endblock contenido %}

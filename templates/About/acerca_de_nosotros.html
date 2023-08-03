@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{%block titulo%} Acerca de nosotros {%endblock titulo%}</title> 
+
+{% block contenido %}
+
+
+<!-- Main Content-->
+<main style="background-image:  linear-gradient(rgba(10, 80, 60, 0.6), rgba(20, 0, 0, 0.3)), url({% static 'imagenes/aboutus.jpg' %});
+background-size: cover;
+background-position: center;"
+class="md-4"> 
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div style="background: linear-gradient(rgba(150, 250, 225, 0.6), rgba(20, 0, 0, 0.3));
+            padding: 20px;
+            border-radius: 10px;
+            color: white;
+            margin-top: 20px;
+            margin-bottom: 20px;" 
+            class="col-md-10 col-lg-8 col-xl-7" >
+                
+                <h1 style="color: #ffffff; text-align:center ; font-size: 36px; margin-top: 20px;">Acerca de nosotros</h1>
+                <h2 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; text-align: center; font-size: 35px; margin-bottom: 10px;">¡Bienvenidos a nuestra página web!</h2>
+                <br>
+                <p style="text-align: justify;">Somos un grupo apasionado de estudiantes de programación del Informatorio Chaco 2023,
+                    un espacio de aprendizaje y crecimiento ubicado en la hermosa provincia de Chaco, Argentina. 
+                    Nuestro objetivo es explorar el vasto mundo de la tecnología y la programación 
+                    mientras nos sumergimos en el emocionante viaje de convertirnos en desarrolladores talentosos.</p> 
+                    <br>
+                <p style="text-align: justify;">En este emocionante viaje, hemos descubierto que la programación no solo es una habilidad técnica, 
+                    sino también una forma de expresión y creatividad. Cada línea de código que escribimos nos permite 
+                    dar vida a ideas y soluciones innovadoras que pueden cambiar la forma en que interactuamos con la 
+                    tecnología y el mundo que nos rodea.</p> 
+                    <br>
+                <p style="text-align: justify;">Nuestra pasión por el aprendizaje es insaciable, y en cada desafío que encontramos,
+                    encontramos una oportunidad para mejorar y superar nuestros límites. Trabajamos juntos como un equipo, 
+                    fomentando un ambiente de compañerismo y colaboración, 
+                    donde todos aportamos nuestras habilidades únicas para lograr resultados excepcionales.</p> <br>
+                <p style="text-align: justify;">A través del Informatorio Chaco, hemos tenido la oportunidad de aprender de los mejores profesionales y
+                    expertos en el campo de la programación. Cada día, adquirimos nuevos conocimientos y
+                    habilidades que nos permiten enfrentar proyectos más ambiciosos y estimulantes.</p> <br>
+                <p style="text-align: justify;">Esta página web representa un hito en nuestro camino como estudiantes de programación. 
+                    Aquí, compartiremos nuestros proyectos, experiencias y conocimientos adquiridos. 
+                    Queremos inspirar a otros a aventurarse en el fascinante mundo de la tecnología y la programación, 
+                    demostrando que con determinación y pasión, todos podemos convertirnos en creadores de soluciones innovadoras. <br>
+                    Agradecemos a todos aquellos que nos han apoyado en este viaje y a quienes nos apoyarán en el futuro.</p> <br>
+                <p style="text-align: justify;">¡Únete a nosotros en este viaje de descubrimiento y crecimiento tecnológico! 
+                    Estamos emocionados de compartir nuestro entusiasmo por la programación con vos 
+                    y de ver cómo juntos construimos un futuro más brillante a través del poder del código.</p><br>
+                <p style="text-align: center; font-size: 30px;">¡Gracias por visitarnos!</p>
+
+                <p style="text-align: center; font-size: 20px;">Grupo.py: un equipo de estudiantes de programación del:</p>
+                <div style="text-align: center;">
+                    <div style="display: inline-block;">
+                        <img src="{% static 'imagenes/infor.png' %}" alt="Logo Informatorio" style="width: 300px; height: auto;">
+                
+                <br>
+
+                <p style="background: linear-gradient(rgba(255, 255, 255, 0.226), rgba(255, 255, 255, 0.226));
+                padding: 20px;
+                border-radius: 00px;
+                color: white;
+                margin-top: 0px;
+                margin-bottom: 0px;">
+                <a style="font-weight: bold;font-size: 22px;">Integrantes del grupo:</a> <br><br> 
+                    <a style="color:white;" href="#">BENITEZ MERLO, Julián</a><br>
+                    <a style="color:white;" href="#">CENTURIÓN, Johana Alexia</a> <br> 
+                    <a style="color:white;" href="#">DURÉ, Claudia</a> <br> 
+                    <a style="color:white;" href="#">FERNÁNDEZ FABREGAT , Maria Celeste</a><br>
+                    <a style="color:white;" href="#">LAZARTE, Francisco</a></p>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock contenido %}

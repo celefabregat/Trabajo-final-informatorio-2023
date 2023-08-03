@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load colaborador_tags %}
+
+{% block contenido %}
+<center>
+    <div class="post-ind">
+        <section class="pos-i">
+            <div class="cont-pos">
+                <article class="articulo">
+                    <h1>{{posts.titulo}}</h1>
+                    <h2>{{posts.subtitulo}}</h2>
+                    <div class="cant-pd">
+                        <img src="{{posts.imagen.url}}" width="450" height="auto">                      
+                    </div>
+                    <div class="cas-id mx-sm-4 pt-3">
+                        <span>{{ posts.fecha}}| Diseño Web </span>
+                        <h3>Escrito por {{posts.usuario}}</h3>
+                        <p>{{posts.texto}}</p>
+                    </div>
+                    {% if request.user == posts.usuario and user.is_superuser or request.user == posts.usuario and request.user|has_group:"Colaborador" %}
+                    <div class="container-fluid" style="margin-top: 20px;">
+                        <a class="btn btn-primary" id="boton_post" href="{% url 'apps.post:post_update' pk=posts.id %}">Modificar Post</a>
+                        <a class="btn btn-danger" id="boton_post" href="{% url 'apps.post:post_delete' pk=posts.id %}">Eliminar Post</a>
+                    </div>   
+                    {% endif %}    
+                    {% include "comentario/crear_comentario.html" %}   
+  
+                </article>
+            </div>
+        </section>
+    </div>
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <center>
+    <br>
+	<article class="articulo">
+		
+		<h1>TITULO: {{posts.titulo}}</h1>
+
+		<img src="{{posts.imagen.url}}" width="300" height="auto">
+		<p>FECHA: {{posts.fecha}}</p>
+		<p>CATEGORIA: {{posts.categoria}}</p>
+		<p>TEXTO: {{posts.texto}}</p>
+	</article>
+
+    
+   
+
+    
+    <br>
+</div>
+</center> {% endcomment %}
+
+{% endblock contenido %}

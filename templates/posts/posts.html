@@ -1,0 +1,90 @@
+{% extends 'base.html' %} 
+{% load  static %}
+{% load  colaborador_tags %}
+{% block contenido %}
+
+
+
+<div class="cont-f text-center ">
+  {% if user.is_superuser or request.user|has_group:"Colaborador" %}
+  <div class="mx-sm-4 pt-3" style="margin-top: 10px;">
+    <a class="btn btn-info" href="{% url 'apps.post:crear_post' %}" role="button">Crear nuevo post</a>
+  </div>
+{% endif %}
+  <div class="dropdown mx-sm-4 pt-3">
+    <button class="btn btn-secondary dropdown-toggle " type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Filtrar por:
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+      <li><a class="dropdown-item " href="{% url 'apps.post:posts' %}">Todos</a></li>
+      <li><hr class="dropdown-divider"></li>
+      <li><a class="dropdown-item " href="{% url 'apps.post:posts' %}?orden=reciente">Mas recientes</a></li>
+      {% comment %} <li><a class="dropdown-item " href="{% url 'apps.post:posts' %}?orden=reciente">Mas recientes</a></li> {% endcomment %}
+      <li><a class="dropdown-item" href="{% url 'apps.post:posts' %}?orden=antiguo">Mas antiguo</a></li>
+      <li><a class="dropdown-item" href="{% url 'apps.post:posts' %}?orden=alfabeticoA-Z">Alfabetico A-Z</a></li>
+      <li><a class="dropdown-item" href="{% url 'apps.post:posts' %}?orden=alfabeticoZ-A">Alfabetico Z-A</a></li>
+      </ul>
+  </div>
+  <br>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Filtrar por Categoria:
+    </button>
+    <ul class="dropdown-menu dropdown-menu-dark">
+      <li><a class="dropdown-item " href="{% url 'apps.post:posts' %}">Todos</a></li>
+      <li><hr class="dropdown-divider"></li>
+      {% for categoria in categorias  %}
+      <li><a class="dropdown-item " href="{% url 'apps.post:posts' %}?categoria={{categoria.nombre}}"> {{ categoria.nombre }} </a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+  <section class="post-list">
+    
+    <div class="content">
+      {% for i in posts %}
+      <article class="post">
+        <div class="post-header">
+          <div class="post-img">
+             <img
+              width="100%"
+              height="200px"
+              style="object-fit: cover"
+              src="{{ i.imagen.url }}"
+              alt=""
+            /> 
+          </div>
+        </div>
+        <div class="post-body">
+          <span>{{ i.fecha }}| Diseño Web </span>
+          <h2>{{ i.titulo }}</h2>
+          <h3>Por {{i.usuario}}</h3>
+          <p>{{ i.texto|truncatewords:30 }}</p>
+          <a href="{% url 'apps.post:post_individual' i.id %}" class="post-link"
+            >Leer Mas...</a
+          >
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+</body>
+{% endblock contenido %} {% comment %} {% endblock %} {% extends 'base.html' %} {% block
+contenido %}
+<title>{% block title %} Todos los post {% endblock title %}</title>
+{% for i in posts %}
+<br />
+<li>{{ i.titulo }}</li>
+<li>{{ i.subtitulo }}</li>
+<li>{{ i.categoria }}</li>
+<br />
+<a id="boton_post" href="{% url 'apps.post:post_individual' i.id %}">
+  Ir a este Posts
+</a>
+
+{% empty %}
+<h1>No hay registros</h1>
+
+{% endfor %}
+<br />
+{% endblock %} {% endcomment %}

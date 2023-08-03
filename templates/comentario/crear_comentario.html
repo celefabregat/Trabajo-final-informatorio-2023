@@ -1,0 +1,82 @@
+{% load  colaborador_tags %}
+<center>
+    <div class= "conta-g" style="margin-bottom: 20px;">
+        <h4>Comentarios</h4>
+        <div class="cos-c mx-sm-5 pt-3">
+            {% for comentario in comentarios %}
+            <li>Por: {{ comentario.usuario }}</li>
+            <p>{{ comentario.texto }}</p>
+            <div class="com-eli ">
+                {% if user.is_superuser or comentario.usuario == user %}
+                <a class="btn btn-info" id= "boton_post" href= "{% url 'apps.post:comentario_editar' pk=comentario.pk %}?next={{ request.path }}">Editar</a>
+                {% endif %}
+                {% if request.user == comentario.usuario or user.is_superuser or request.user == posts.usuario %}
+                <a class="btn btn-warning" id= "boton_post" href= "{% url 'apps.post:comentario_eliminar' pk=comentario.pk %}?next={{ request.path }}">Eliminar</a>
+                {% endif %}
+            </div>
+            {% comment %} {% if request.user == posts.usuario and user.is_superuser or request.user == posts.usuario and request.user|has_group:"Colaborador" %} {% endcomment %}
+            
+    {% empty %}
+    <li>No hay comentarios - Puedes ser el primero en comentar!</li>
+    {% endfor %}
+        <div class="cont mx-sm-5 pt-3">
+            {% if request.user.is_authenticated %}
+                <h2>Escribe un Comentario</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+                        <div class="com-fg mx-sm-5 pt-3 text-center">
+                            <label for="id_texto">Texto:</label>
+                            <textarea class= "tex_c" name="texto" cols="40" rows="10" required="" id="id_texto"></textarea>      
+                        </div>
+                        <div class="alig-data mx-sm-4 pt-3">
+                            <input type="submit" value="Comentar" class="btn btn-success comentar">
+                        </div>
+                    </form>
+         
+            {% else %}
+                <h2>Debes iniciar sesion o registrarte para comentar</h2>
+                <a class="btn btn-success btn-lg" href="{% url 'apps.usuario:login' %}?next={{ request.path }} #comentario">Iniciar sesion</a>
+                <input type="hidden" name="next" value="Comentar">
+            {% endif %}
+         
+        </div>
+
+    </div>
+    {% comment %} <div class= "container-fluid" style="margin-bottom: 20px;"></div>
+        {% for comentario in comentarios %}
+            <table>{{ comentario.usuario }} - {{ comenatario.fecha }}</table>
+            <ul class="w-100 list-unlysted d-flex justify-content-between mb-0">
+                <p>{{ comentario.texto }}</p>
+                {% if user.is_superuser or comentario.usuario == user %}
+                    <br><a id= "boton_post" href= "{% url 'apps.post:comentario_editar' pk=comentario.pk %}?next={{ request.path }}">Editar</a>
+                {% endif %}
+                {% if user.is_superuser or comentario.usuario == user or request.user|has_group:"Colaborador" %}
+                    <br><a id= "boton_post" href= "{% url 'apps.post:comentario_eliminar' pk=comentario.pk %}?next={{ request.path }}">Eliminar</a>
+                {% endif %}
+                <br></br>
+            </ul>
+        {% empty %}
+        <li>No hay comentarios - Puedes ser el primero en comentar!</li>
+        {% endfor %}
+
+    </div> {% endcomment %}
+    {% comment %} <a id="comentario"></a>
+    <div class="container-fluid" style="margin-bottom: 20px">
+    <form method="POST" style= "margin-bottom: 100px; margin-top: 100px">
+        {% csrf_token %}
+        {% if request.user.is_authenticated %}
+        <h2>Deja tu comentario</h2>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value= "Comentar">
+            </form>
+        {% else %}
+            <h2>Debes iniciar sesion o registrarte para comentar</h2>
+            <a class="btn btn-success btn-lg" href="{% url 'apps.usuario:login' %}?next={{ request.path }} #comentario">Iniciar sesion</a>
+            <input type="hidden" name="next" value="{{ request.path }}">
+            {% endif %}
+          
+    </form> 
+    </div> {% endcomment %}
+    </center>

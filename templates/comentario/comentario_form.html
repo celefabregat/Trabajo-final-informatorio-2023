@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+<center>
+    {% if user.is_superuser or comentario.usuario == user %}
+    <div class="cat">
+        <div class="fomr_cat">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="titulo-cat">
+                    <h1 class="text-light">Editar Comentario</h1>
+                </div>
+                <div class="nombre col-md-4 ">
+                    <label class="form__label" for="id_texto">Texto:</label>
+                    <textarea name="texto" cols="40" rows="10" required="" id="id_texto" class="tex_crear">{{comentario.texto}}</textarea>
+                <div class="nombre mx-sm-4 pt-3">
+                    <input class="btn btn-success" type="submit" value="Guardar Cambios">
+                </div>
+    
+             </form>
+        </div>
+    </div>
+    {% else %}
+    <div class="container-fluid" style="margin: 30px;">
+        <h1>Solo los usuarios con permisos pueden acceder a esta pagina</h1>
+    </div>
+    {% endif %}
+</center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <center>
+    {% if user.is_superuser or comentario.usuario == user %}
+<div class="container-fluid" style="margin-bottom: 10px; margin-top:10px">
+    <h1>Editar Comentario</h1>
+    <form method="POST" style="margin-bottom: 10px; margin-top: 10px">
+        {% csrf_token %}
+        {{ form.as_p}}
+        <input type="submit" value="Guardar Cambios">
+    </form>
+</div>
+{% else %}
+    <div class="container-fluid" style="margin: 30px;">
+        <h1>Solo los usuarios con permisos pueden acceder a esta pagina</h1>
+    </div>
+{% endif %}
+</center> {% endcomment %}
+
+{% endblock contenido %}
+
+

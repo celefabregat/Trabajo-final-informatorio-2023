@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+
+
+<center>
+    <div class="cat">
+        <div class="fomr_cat">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="titulo-cat">
+                    <h1 class="text-light">Agrega una nueva categoria</h1>
+                </div>
+                <div class="nombre">
+                    <label class="form__label" for="id_nombre">Nombre:</label>
+                    <input type="text" name="nombre" maxlength="30" required="" id="id_nombre" class="dat_fr">
+                </div>
+                <div class="nombre mx-sm-4 pt-3">
+                    <input class="btn btn-info" type="submit" value="Agregar">
+                </div>
+                <div class="cont_f" style="margin-top: 20px;">
+                    <a class="btn btn-success" href="{%url 'apps.post:categoria_list'%}" role="button">Ver Lista de categorias</a>
+                </div>
+
+             </form>
+        </div>
+    </div>
+    {% comment %} <div class="cont" style="margin: 20px;">
+        <h1>agregar nueva categoria</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Agregar">
+        </form>
+        <div class="cont_f" style="margin-top: 20px;">
+            <a class="btn btn-success" href="{%url 'apps.post:categoria_list'%}" role="button">Ver Lista de categorias</a>
+        </div>
+    </div> {% endcomment %}
+</center>
+
+
+
+
+
+{% endblock contenido %}

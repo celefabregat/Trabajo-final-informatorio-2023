@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Registro de usuario {% endblock title %}
+
+{% block contenido %}
+<div class="registro">
+    <div class="container">
+        <div class="row justify-content-center pt-6  mr-1 ">
+            <div class="col-md-4 registrarse">
+                <form method="POST">
+                        {% csrf_token %}                  
+                    <div class="form-get text-center pt-4">
+                        <h1 class="text-light">Registrarse</h1>
+                    </div>
+                    <div class="form-get mx-sm-4 pt-3 text-center">
+                        <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username" class="form-registro" placeholder="Ingrese su usuario">
+                    </div>
+                    <div class="form-get mx-sm-4 pt-3 text-center">
+                        <input type="text" name="first_name" maxlength="150" id="id_first_name" class="form-registro" placeholder="Ingrese su Nombre">
+                    </div>
+                    <div class="form-get mx-sm-4 pt-3 text-center">
+                        <input type="text" name="last_name" maxlength="150" id="id_last_name" class="form-registro" placeholder="Ingrese su apellido">
+                    </div>
+                    <div class="form-get mx-sm-4 pt-3 text-center">
+                        <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" class="form-registro" placeholder="Ingrese su contraseña">
+                    </div>
+                    <div class="form-group mx-sm-4 pt-3 text-center">
+                        <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" class="form-registro" placeholder="Confirmar contraseña">
+                    </div>
+                    <div class="form-get mx-sm-4 pt-3 text-center">
+                        <input type="email" name="email" maxlength="254" id="id_email" class="form-registro" placeholder="Direccion de e-mail">
+                    </div>
+                    <div class="form-get mx-sm-4 pt-4 text-center">
+                        <input type="submit" class="btn btn-block regis" value="REGISTRARSE">
+                    </div>
+                {{form.errors}}
+                </form>
+            </div>
+        </div>
+        
+    </div>  
+</div> 
+
+{% endblock contenido %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

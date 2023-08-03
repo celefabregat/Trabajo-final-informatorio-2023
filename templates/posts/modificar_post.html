@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block contenido %} 
+
+<div class="cont-cr">
+    <center>
+        <div class="contenedor-crear">
+            <div class="col-md-4 crear-post">
+                
+                    <div class="titulo">
+                        <a class="btn btn-info" href="{%url 'apps.post:crear_categoria'%}" role="button">Crear Nueva Categoria</a>
+                    </div> 
+                    <form method= "POST" enctype="multipart/form-data">
+                        {% csrf_token %}        
+                    <div class="tex-center mx-sm-4 pt-3">
+                        <h1 class="text-light">Modifica tu Post</h1>
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="usuario" >Usuario:</label>
+                        <span>{{user.username}}</span>
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <div class="form_gata alig-data mx-sm-4 pt-3">
+                            <label for="{{form.titulo.id_for_label}}">Titulo</label>
+                            <input type="text" name="{{form.titulo.html_name}}"  maxlength="50" required="" id="{{form.titulo.id_for_label}}" value="{{ post.titulo}}" class="datos_form">
+                        </div>
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="id_subtitulo">Subtitulo:</label>
+                        <input type="text" name="subtitulo" value="{{ post.subtitulo}}" maxlength="100" id="id_subtitulo" class="datos_form">
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="id_texto">Texto:</label>
+                        <textarea class="tex_crear" name="texto" cols="40" rows="10" required="" id="id_texto">{{post.texto}}</textarea>
+     
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="{{form.activo.id_for_label}}">Activo:</label>
+                        <input type="checkbox" name="activo" id="{{form.activo.id_for_label}}" checked=""class="datos_activo">
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="{{form.categoria.id_for_label}}">Categoria:</label>
+                        <select class="form-select" aria-label="Default select example" id= "{{form.categoria.id_for_label}}" name="{{form.categoria.html_name}}">
+                            {% for categoria in form.categoria.field.queryset %}
+                            <option value="{{ categoria.id }}" {% if categoria.id == form.categoria.value %}selected{% endif %}>{{categoria.nombre}}</option>
+                            {% endfor %}
+                        </select>
+                        {% comment %} {% for categoria in form.categoria.field.queryset %}
+                        <p>{{categoria.nombre}}</p>
+                        {% endfor %} {% endcomment %}
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="id_imagen">Imagen actualmente:</label>
+                        <a href="{{post.imagen.url}}">{{post.imagen}}</a>
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <label for="id_imagen">Imagen a modificar:</label>
+                        <input class="form-control" type="file"name="imagen" accept="image/*" id="id_imagen">
+                    </div>
+                    <div class="form_gata alig-data mx-sm-4 pt-3">
+                        <input type="submit" value="Guardar Cambios" class="btn btn-block guardar">
+                    </div>
+                    </form>
+            </div>
+            
+    
+        </div>
+    
+    </center>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% comment %} <center>
+    <div class="content-fluid" style="margin: 30px;">
+        <a id="boton_post"
+        href= "{% url 'apps.post:crear_categoria' %}?next={% url 'apps.post:post_update' pk=object.id %}">
+        Crear nueva categoria</a>
+    <br>
+    <h1>Modificar post</h1>
+    <form method= "POST" enctype="multipart/form-data">
+         {% csrf_token %}
+         {{ form.as_p }}
+         <input type="submit" value="Guardar cambios">
+    <form>
+    </div>
+</center>   {% endcomment %}
+
+{% endblock contenido %} 

@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% load static %} 
+{% block title %} Contacto {%endblock title %} {% block contenido %}
+
+<div class="contacto">
+  <div class="container">
+    <form method="POST" class="form">
+      {% csrf_token %}
+      <header class="header">
+        <h1><span>Formulario de Contacto</span></h1>
+      </header>
+      <label for="id_nombre_apellido" class="form__label"
+        >Nombre y Apellido:</label
+      >
+      <input
+        type="text"
+        name="nombre_apellido"
+        maxlength="120"
+        required=""
+        id="id_nombre_apellido"
+        class="form__input"
+        placeholder="Nombre y Apellido"
+      />
+
+      <label for="id_email" class="form__label">Email:</label>
+      <input
+        type="email"
+        name="email"
+        maxlength="254"
+        required=""
+        id="id_email"
+        class="form__input"
+        placeholder="Email"
+      />
+
+      <label for="id_asunto" class="form__label">Asunto:</label>
+      <input
+        type="text"
+        name="asunto"
+        maxlength="50"
+        required=""
+        id="id_asunto"
+        class="form__input"
+        placeholder="Asunto"
+      />
+
+      <label for="id_mensaje" class="form__label">Introduzca su mensaje:</label>
+      <textarea
+        class="form__text"
+        name="mensaje"
+        cols="40"
+        rows="10"
+        required=""
+        id="id_mensaje"
+        placeholder="Escriba su mensaje"
+      ></textarea>
+      <input type="submit" class="enviar" value="Enviar su consulta" />
+    </form>
+  </div>
+</div>
+{% endblock contenido %}

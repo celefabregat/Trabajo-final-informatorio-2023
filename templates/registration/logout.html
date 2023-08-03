@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block contenido %}
+<center>
+<div class="container mt-3">
+    <div class="messages">
+        {% for message in messages %}
+            <table{% if message.tags%} class="{{ message.tags}}" {% endif %}>{{ message }}</table>
+        {% endfor %}
+
+    </div>
+</div> 
+</center>
+
+{% endblock contenido %}
